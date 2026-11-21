@@ -24,4 +24,4 @@
 
 ## 6. Verify integration
 
-- [ ] 6.1 Run `npm test` and `npm start`; verify the page loads at `http://localhost:8000`, the requested `.jpg` responds with HTTP 200 and `image/jpeg`, and changing the initial state updates predictions without recalculating the model in the UI.
+- [x] 6.1 Run `npm test` and `npm start`; verify the page loads at `http://localhost:8000`, the requested `.jpg` responds with HTTP 200 and `image/jpeg`, and changing the initial state updates predictions without recalculating the model in the UI.
