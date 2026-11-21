@@ -110,7 +110,7 @@ export function distribucionEnPasos(
 
   const indiceEstado =
     typeof estadoInicial === "string"
-      ? estados.indexOf(estadoInicial)
+      ? estados.findIndex(({ nombre }) => nombre === estadoInicial)
       : estadoInicial;
 
   if (
@@ -138,4 +138,70 @@ export function resultadosPorPasos(
       distribucionEnPasos(estadoInicial, n, matriz),
     ]),
   );
+}
+
+export function simularRecorrido(
+  estadoInicial,
+  saltos,
+  aleatorio = Math.random,
+) {
+  validarEnteroNoNegativo(saltos, "El número de saltos");
+
+  const indiceInicial =
+    typeof estadoInicial === "string"
+      ? estados.findIndex(({ nombre }) => nombre === estadoInicial)
+      : -1;
+  if (indiceInicial < 0) {
+    throw new Error(`El estado inicial "${estadoInicial}" no existe.`);
+  }
+  if (typeof aleatorio !== "function") {
+    throw new Error("El generador aleatorio debe ser una función.");
+  }
+
+  let indiceActual = indiceInicial;
+  const recorrido = [];
+
+  for (let salto = 0; salto < saltos; salto += 1) {
+    const fila = matrizTransicion[indiceActual];
+    const valorAleatorio = aleatorio();
+    if (
+      typeof valorAleatorio !== "number" ||
+      !Number.isFinite(valorAleatorio) ||
+      valorAleatorio < 0 ||
+      valorAleatorio >= 1
+    ) {
+      throw new Error("El generador aleatorio debe devolver un número entre 0 y 1.");
+    }
+
+    const sumaFila = fila.reduce((suma, probabilidad) => suma + probabilidad, 0);
+    const objetivo = valorAleatorio * sumaFila;
+    let acumulado = 0;
+    let siguienteIndice = -1;
+
+    for (let indice = 0; indice < fila.length; indice += 1) {
+      acumulado += fila[indice];
+      if (fila[indice] > 0 && objetivo < acumulado) {
+        siguienteIndice = indice;
+        break;
+      }
+    }
+
+    if (siguienteIndice < 0) {
+      for (let indice = fila.length - 1; indice >= 0; indice -= 1) {
+        if (fila[indice] > 0) {
+          siguienteIndice = indice;
+          break;
+        }
+      }
+    }
+
+    if (siguienteIndice < 0) {
+      throw new Error("La fila de transición no contiene probabilidades positivas.");
+    }
+
+    indiceActual = siguienteIndice;
+    recorrido.push(estados[indiceActual].nombre);
+  }
+
+  return recorrido;
 }

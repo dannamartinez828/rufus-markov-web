@@ -37,5 +37,5 @@ export function estadoMasProbable(distribucion, estados) {
     }
   }
 
-  return estados[indiceMayor];
+  return estados[indiceMayor].nombre;
 }

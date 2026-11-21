@@ -14,14 +14,24 @@
   <body>
     <div class="page-shell">
       <header class="hero">
-        <p class="eyebrow">Deponia Doomsday · una aventura temporal</p>
-        <h1>Rufus en el bucle</h1>
-        <p class="hero-copy">
-          Los bucles temporales de <em>Deponia Doomsday</em> llevan a Rufus por
-          distintos puntos de la línea temporal. Una cadena de Markov describe
-          esos saltos mediante probabilidades: el siguiente punto depende del
-          estado actual.
-        </p>
+        <div class="hero-content">
+          <p class="eyebrow">Deponia Doomsday · una aventura temporal</p>
+          <h1>Rufus en el bucle</h1>
+          <p class="hero-copy">
+            Los bucles temporales de <em>Deponia Doomsday</em> llevan a Rufus
+            por distintos puntos de la línea temporal. Una cadena de Markov
+            describe esos saltos mediante probabilidades: el siguiente punto
+            depende del estado actual.
+          </p>
+        </div>
+        <img
+          id="hero-rufus"
+          class="hero-rufus"
+          width="227"
+          height="360"
+          alt="Rufus en Aldea Kuvaq"
+          loading="lazy"
+        >
       </header>
 
       <main>
@@ -61,6 +71,95 @@
             </p>
           </div>
           <div class="result-grid" id="result-cards" aria-live="polite"></div>
+        </section>
+
+        <section class="panel" aria-labelledby="simulator-title">
+          <div class="section-heading">
+            <p class="eyebrow">Aventura al azar</p>
+            <h2 id="simulator-title">Simulador de bucle</h2>
+            <p class="section-copy">
+              Recorre diez saltos desde el estado inicial seleccionado. Cada
+              salto se elige al azar según las probabilidades del modelo.
+            </p>
+          </div>
+          <button class="action-button" id="simulate-button" type="button">
+            Simular 10 saltos
+          </button>
+          <p class="simulation-count" id="simulation-count" aria-live="polite">
+            Aún no se ha simulado un recorrido.
+          </p>
+          <div class="simulator-path" id="simulation-path" aria-live="polite"></div>
+        </section>
+
+        <section class="panel" aria-labelledby="characters-title">
+          <div class="section-heading">
+            <p class="eyebrow">Quienes viven el bucle</p>
+            <h2 id="characters-title">Los personajes del bucle</h2>
+          </div>
+          <div class="character-grid">
+            <article class="character-card">
+              <h3>Rufus</h3>
+              <p>Es inmune al reinicio y siempre recuerda lo que ha ocurrido.</p>
+            </article>
+            <article class="character-card">
+              <h3>Goal</h3>
+              <p>Habitante de Elysium que roba la cápsula del tiempo.</p>
+            </article>
+            <article class="character-card">
+              <h3>Profesor McChronicle</h3>
+              <p>Físico del tiempo; su coche es la máquina del tiempo.</p>
+            </article>
+            <article class="character-card">
+              <h3>Tuck</h3>
+              <p>
+                El borracho del pueblo se une a Rufus y recibe un gorro de papel
+                aluminio.
+              </p>
+            </article>
+            <article class="character-card">
+              <h3>Los Fewlocks</h3>
+              <p>
+                Criaturas que parodian a los Morlocks de
+                <em>La máquina del tiempo</em>.
+              </p>
+            </article>
+            <article class="character-card">
+              <h3>Los utopianos</h3>
+              <p>Observan la historia e intentan corregirla.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="guide-title">
+          <div class="section-heading">
+            <p class="eyebrow">Una guía rápida</p>
+            <h2 id="guide-title">Cómo leer esta aplicación</h2>
+          </div>
+          <div class="guide-copy">
+            <p>
+              Un <strong>estado</strong> es un punto de la línea temporal en el
+              que puede estar Rufus: Aldea Kuvaq, Eliseo, Tiempo intermedio o
+              Reinicio.
+            </p>
+            <p>
+              La <strong>matriz de transición</strong> muestra las posibilidades
+              de pasar de cada estado actual (filas) a un estado siguiente
+              (columnas). Cada fila suma el 100&nbsp;%.
+            </p>
+            <p>
+              La <strong>propiedad de Markov</strong> significa que el siguiente
+              estado depende solo del estado actual, no de todo el camino
+              anterior.
+            </p>
+            <p>
+              Para calcular varios saltos se eleva la matriz a n y se aplica al
+              estado inicial: vector inicial × matriz<sup>n</sup>.
+            </p>
+            <p class="model-caveat">
+              Las probabilidades son supuestos de este modelo educativo, no
+              datos oficiales del juego.
+            </p>
+          </div>
         </section>
       </main>
 
