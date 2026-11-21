@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Explora los saltos temporales de Rufus con una cadena de Markov."
+    >
+    <title>Rufus en el bucle</title>
+    <link rel="stylesheet" href="./src/styles.css">
+    <script type="module" src="./src/app.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <p class="eyebrow">Deponia Doomsday · una aventura temporal</p>
+        <h1>Rufus en el bucle</h1>
+        <p class="hero-copy">
+          Los bucles temporales de <em>Deponia Doomsday</em> llevan a Rufus por
+          distintos puntos de la línea temporal. Una cadena de Markov describe
+          esos saltos mediante probabilidades: el siguiente punto depende del
+          estado actual.
+        </p>
+      </header>
+
+      <main>
+        <section class="panel" aria-labelledby="initial-state-title">
+          <div class="section-heading">
+            <p class="eyebrow">Punto de partida</p>
+            <h2 id="initial-state-title">¿Dónde empieza Rufus?</h2>
+          </div>
+          <fieldset class="state-picker">
+            <legend class="visually-hidden">Selecciona el estado inicial</legend>
+            <div class="state-options" id="state-options"></div>
+          </fieldset>
+        </section>
+
+        <section class="panel" aria-labelledby="transition-title">
+          <div class="section-heading">
+            <p class="eyebrow">El modelo</p>
+            <h2 id="transition-title">Matriz de transición</h2>
+            <p class="section-copy">
+              Cada fila representa el estado actual y cada columna, el siguiente
+              salto posible.
+            </p>
+          </div>
+          <div
+            class="table-scroll"
+            id="transition-table"
+            aria-live="polite"
+          ></div>
+        </section>
+
+        <section class="panel" aria-labelledby="results-title">
+          <div class="section-heading">
+            <p class="eyebrow">Las posibilidades</p>
+            <h2 id="results-title">¿Qué viene después?</h2>
+            <p class="section-copy">
+              Probabilidades estimadas para cada horizonte temporal.
+            </p>
+          </div>
+          <div class="result-grid" id="result-cards" aria-live="polite"></div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        Imágenes de Deponia © Daedalic Entertainment, uso educativo
+      </footer>
+    </div>
+    <noscript>Activa JavaScript para explorar las predicciones de Rufus.</noscript>
+  </body>
+</html>
